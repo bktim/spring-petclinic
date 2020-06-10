@@ -4,8 +4,6 @@ pipeline {
    stages {
       stage('Build') {
          steps {
-            git 'https://github.com/bktim/spring-petclinic.git'
-
             script {
                withSonarQubeEnv() {
                   sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar clean package'
