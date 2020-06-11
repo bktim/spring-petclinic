@@ -4,9 +4,10 @@ pipeline {
    stages {
       stage('Build') {
          steps {
+            sh 'mvn package'
             script {
                withSonarQubeEnv() {
-                  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar clean package'
+                  sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar'
                }
 
                docker.build("spring-petclinic:${env.BUILD_ID}")
